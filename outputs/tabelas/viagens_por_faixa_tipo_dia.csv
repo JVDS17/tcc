@@ -1,0 +1,4 @@
+tipo_dia,1_manha_ate_9h,2_entrepico_9_16h,3_pico_tarde_16_20h,4_noite_20h_mais
+domingo,1,5,0,5
+sabado,2,24,8,8
+util,15,301,7,18

@@ -1,0 +1,15 @@
+service_id,service_name,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date
+307679,Dias Úteis Convencional,1,1,1,1,1,0,0,20240101,20261231
+307680,Domingos Convencional,0,0,0,0,0,0,1,20240101,20261231
+307681,Sábados Convencional,0,0,0,0,0,1,0,20240101,20261231
+307682,Dias Úteis - Suplementar,1,1,1,1,1,0,0,20240101,20261231
+307683,Domingos - Suplementar,0,0,0,0,0,0,1,20240101,20261231
+307684,Sábados - Suplementar,0,0,0,0,0,1,0,20240101,20261231
+447982,Domingo/Terça_Carnaval_Conv,0,0,0,0,0,0,0,20260210,20260218
+447983,Quarta-feira_Cinzas_Conv,0,0,0,0,0,0,0,20260210,20260218
+447984,Segunda_Carnaval_Conv,0,0,0,0,0,0,0,20260210,20260218
+447985,Sábado_Carnaval_Conv,0,0,0,0,0,0,0,20260210,20260218
+447986,Domingo/Terça_Carnaval_Suple,0,0,0,0,0,0,0,20260210,20260218
+447987,Quarta-feira_Cinzas_Suple,0,0,0,0,0,0,0,20260210,20260218
+447988,Segunda_Carnaval_Suple,0,0,0,0,0,0,0,20260210,20260218
+447989,Sábado_Carnaval_Suple,0,0,0,0,0,0,0,20260210,20260218

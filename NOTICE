@@ -1,0 +1,16 @@
+Este repositório contém código adaptado de:
+
+  mixed-model-bus-wait-time-forecast
+  Copyright Brendon L. Pasquim, Keiko V. O. Fonseca, Luiz Ledo M. Melo Jr.
+  https://github.com/Brendonpasquim/mixed-model-bus-wait-time-forecast
+  Licenciado sob a Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+
+Arquivo adaptado: src/04_replica_pasquim.R (modelos M1, M2, M3 e M3 sazonal).
+Alterações: aplicação a todas as viagens da linha 4110 de Belo Horizonte, estimação do
+coeficiente AR(1) (em vez de valor fixo), estimação CSS do componente sazonal e validação
+fora da amostra com RMSE/MAE.
+
+Referência: PASQUIM, B. L.; FONSECA, K. V. O.; MELO JR., L. L. M. Quando chega? Análise de
+previsibilidade de tempos de espera em transporte público urbano utilizando Modelos Mistos.
+In: Workshop de Computação Urbana (CoUrb), 9., 2025, Natal/RN. SBC, p. 15-28.
+doi:10.5753/courb.2025.7932

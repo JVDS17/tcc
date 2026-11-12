@@ -1,0 +1,9 @@
+indicador,valor
+leituras brutas,105207
+leituras após remover posições repetidas,41643
+dias com coleta,16
+trip_ids distintos (horários programados),95
+viagens reais (data+trip_id+veículo),995
+veículos distintos,78
+início da coleta,2026-03-30 10:36:54
+fim da coleta,2026-04-19 23:01:43
