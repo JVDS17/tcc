@@ -1,0 +1,52 @@
+\section{Trabalhos Relacionados}
+\label{sec:relacionados}
+
+\subsection{Propagação de atrasos e confiabilidade do tempo de viagem}
+
+Atrasos em linhas de ônibus raramente são eventos isolados. \cite{Zhang2024} analisam atrasos de chegada em tempo real com um modelo de regressões
+aparentemente não relacionadas e mostram que o atraso acumulado nas paradas anteriores é o
+fator mais importante para explicar o atraso nas paradas seguintes, enquanto variáveis
+meteorológicas têm papel secundário no contexto estudado. Essa ideia de acúmulo ao longo do
+percurso é central para a extensão proposta neste trabalho.
+
+Fatores da própria via também afetam a confiabilidade. \cite{KAEWUNRUEN2021100280} investigam as causas da variabilidade do tempo de viagem de
+ônibus em Birmingham e apontam características do percurso, como interseções semaforizadas e
+o espaçamento entre paradas, entre os elementos que mais pesam. No transporte sobre trilhos,
+\cite{doi:10.1177/0361198106195500103} usam
+análise computacional e simulação para aumentar a confiabilidade dos horários do S-Bahn de
+Zurique, mostrando que o próprio quadro de horários pode ser uma fonte de atraso quando não
+reflete os tempos reais de operação.
+
+\subsection{Previsão com dados abertos}
+
+A popularização do padrão GTFS e dos dados de posição em tempo real abriu espaço para modelos
+de previsão de atraso. \cite{10857111} comparam modelos de
+aprendizado de máquina para prever atrasos a partir de dados GTFS, e
+\cite{SARHANI2024100120} discutem como combinar diferentes
+fontes de dados abertos para prever atrasos no transporte ferroviário. Sistemas de
+rastreamento em tempo real também são apontados como base para melhorar a eficiência da
+operação e a informação ao passageiro \cite{10544098}. Esses trabalhos priorizam a acurácia da
+previsão; a abordagem adotada aqui prioriza a interpretação, separando a variabilidade que se
+deve ao trecho da que se deve à viagem.
+
+\subsection{Modelos Mistos aplicados ao transporte público}
+
+\cite{courb}, trabalho replicado aqui, analisam a linha 863 (Água
+Verde) de Curitiba a partir dos dados de GPS publicados pela prefeitura, considerando um
+veículo em um itinerário de 18 paradas (17 trechos). A variável resposta é o tempo de
+deslocamento entre paradas consecutivas, e o agrupamento é feito pelo trecho. Os autores
+comparam um modelo só com efeito fixo, um modelo com intercepto aleatório por trecho e
+modelos com erro autorregressivo, incluindo um componente sazonal cujo período é o número de
+trechos de uma viagem. O modelo com erro autorregressivo sazonal teve o melhor ajuste, e a
+validação foi feita aplicando o modelo ajustado em uma quarta-feira aos dados da
+quarta-feira seguinte.
+
+Modelos Mistos são adequados a esse problema porque as observações têm estrutura hierárquica:
+várias viagens passam pelos mesmos trechos, e cada viagem gera várias observações
+\cite{pinheiro2000}. Isso permite estimar quanto da variabilidade é explicada pelo trecho e
+quanto é residual, além de incorporar correlação temporal entre observações.
+
+Este trabalho se diferencia do original em três pontos: usa outra cidade e outra fonte de
+dados (a API de tempo real e o GTFS da BHTRANS); modela todas as viagens de uma linha ao longo
+de 16 dias, e não um único veículo em um dia; e avalia os modelos fora da amostra com métricas
+de erro, além de propor a extensão com o atraso em relação ao horário programado.

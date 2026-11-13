@@ -1,0 +1,63 @@
+\documentclass[12pt]{article}
+\usepackage{sbc-template}
+\usepackage{graphicx,url}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+
+\sloppy
+
+\title{Previsibilidade dos tempos de viagem da linha 4110 de Belo Horizonte:\\
+uma réplica com Modelos Mistos}
+
+\author{João Victor dos Santos\inst{1}\and Felipe Domingos da Cunha\inst{1}}
+
+\address{ICEI -- Pontifícia Universidade Católica de Minas Gerais
+  (PUC Minas)\\
+  CEP: 30535-901 -- Belo Horizonte -- MG -- Brasil
+  \email{1130758@sga.pucminas.br, 342929@sga.pucminas.br}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We replicate, for Belo Horizonte, a mixed-model study of bus travel-time predictability
+originally carried out in Curitiba. Using 16 days of GPS positions from bus line 4110
+(Belvedere to Dom Cabral, 64 stops) matched to the city's static GTFS feed, we estimated
+arrival times at stops for 393 trips and modeled the travel time between consecutive stops.
+A random intercept per segment explains 63\% of the variance, and an AR(1) error structure
+reduces the out-of-sample error from 62~s (fixed effect only) to 35~s per segment. As an
+extension, we compared observed and scheduled times: trips took 70~minutes on average against
+53~minutes scheduled, and delay grew by 0.92~minutes per kilometer. The data did not support a
+significant afternoon peak effect, mainly because few complete peak-hour trips were recorded.
+\end{abstract}
+
+\begin{resumo}
+Este trabalho replica, em Belo Horizonte, um estudo sobre a previsibilidade dos tempos de
+viagem de ônibus com Modelos Mistos, originalmente realizado em Curitiba. A partir de 16 dias
+de posições de GPS da linha 4110 (Belvedere -- Dom Cabral, 64 paradas), cruzadas com o GTFS
+estático da cidade, estimou-se o horário de passagem nas paradas em 393 viagens e modelou-se o
+tempo de deslocamento entre paradas consecutivas. O intercepto aleatório por trecho explica
+63\% da variância, e a estrutura de erro AR(1) reduz o erro fora da amostra de 62~s (apenas
+efeito fixo) para 35~s por trecho. Como extensão, compararam-se os tempos observados com os
+programados: as viagens duraram em média 70~minutos, contra 53~minutos previstos no quadro de
+horários, e o atraso cresceu 0,92~minuto por quilômetro percorrido. Os dados não sustentaram
+um efeito significativo do pico da tarde, sobretudo pelo pequeno número de viagens completas
+registradas nesse período.
+\end{resumo}
+
+\input{tex/intro}
+\input{tex/trabalhosRelacionados}
+\input{tex/metodologia}
+\input{tex/ResultadosObtidos}
+\input{tex/conclusaoFinal}
+
+\bibliographystyle{sbc}
+\bibliography{sbc-template}
+
+\end{document}

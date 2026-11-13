@@ -1,0 +1,137 @@
+\section{Metodologia}
+\label{sec:metodologia}
+
+O trabalho segue a metodologia de \cite{courb}, adaptada aos dados
+disponíveis em Belo Horizonte, e acrescenta uma análise do atraso em relação ao horário
+programado. O processo tem cinco etapas: coleta, pré-processamento, cálculo dos horários de
+passagem nas paradas, réplica dos modelos e extensão. Todo o código está disponível no
+repositório do trabalho\footnote{\url{https://github.com/JVDS17/tcc}} e reproduz, a partir dos
+dados brutos, todas as tabelas e figuras deste texto.
+
+\subsection{Dados}
+
+\textbf{Posições dos veículos.} As posições de GPS foram coletadas por um programa em Python
+que consultou, a cada 20 segundos, o \textit{feed} GTFS-Realtime de posições de veículos
+(\textit{VehiclePositions}) do sistema de transporte de Belo Horizonte, entre 30/03/2026 e
+19/04/2026. O coletor era executado em sessões de 12 horas e gravava os registros das linhas
+monitoradas em uma planilha do Google Sheets. Cada registro contém o instante da consulta, a
+linha, o veículo, o identificador da viagem no GTFS (\textit{trip\_id}), o horário de partida
+programado, a latitude e a longitude; o campo de velocidade veio sempre zerado e não foi
+usado. Foram coletados 105.207 registros da linha 4110, em 16 dias. Houve dias sem coleta (01
+a 05/04) e períodos com poucos registros, devidos a instabilidades do \textit{feed}, a falhas
+de transmissão dos veículos e aos intervalos entre as sessões de coleta.
+
+\textbf{Quadro de horários e traçado.} Usou-se o GTFS estático da BHTRANS \cite{gtfsbh} na
+versão baixada pelo próprio coletor em 19/04/2026 (versão 202604181953), em vigor durante a
+coleta. Os 95 \textit{trip\_ids} encontrados na coleta existem nesse GTFS. A escolha da versão
+importa: versões posteriores mantêm os mesmos identificadores, mas com horários programados
+diferentes em cerca de um terço das paradas. Do GTFS foram extraídos o traçado da linha
+(\textit{shapes.txt}), as paradas (\textit{stops.txt}) e os horários programados em cada
+parada (\textit{stop\_times.txt}).
+
+\textbf{Recorte.} Todas as viagens registradas pertencem ao sentido Belvedere $\rightarrow$
+Dom Cabral, que tem 64 paradas e 19,5~km; o sentido contrário não foi capturado pela coleta.
+A análise se restringe, portanto, a esse sentido.
+
+\subsection{Pré-processamento}
+
+\textbf{Viagem real.} O \textit{trip\_id} da BHTRANS identifica um horário de partida do
+quadro (por exemplo, a partida das 12h52 em dias úteis) e se repete todos os dias. Por isso,
+uma viagem realizada foi definida pela combinação de data, \textit{trip\_id} e veículo, o que
+resultou em 995 viagens.
+
+\textbf{Posições repetidas.} Embora a API fosse consultada a cada 20~s, os veículos atualizam
+a posição com intervalo mediano de 46~s. Leituras consecutivas do mesmo veículo com a mesma
+posição foram tratadas como duplicatas e removidas, restando 41.643 registros.
+
+\subsection{Horário de passagem nas paradas}
+
+O GPS registra posições em instantes discretos, que raramente coincidem com a passagem pela
+parada. Para estimar esse instante, cada posição foi projetada sobre o traçado da linha,
+obtendo-se a distância percorrida $d$ desde o início do percurso. A busca da projeção foi
+limitada a uma janela à frente da posição anterior, evitando associar o ônibus a um trecho
+errado em locais onde a rota passa perto de si mesma, e posições a mais de 80~m do traçado
+foram descartadas. A distância de cada parada $s$ ao longo da rota, $d_s$, vem do próprio GTFS.
+
+O horário de passagem foi obtido por interpolação linear entre as duas posições consecutivas
+$P_i$ e $P_{i+1}$ que envolvem a parada ($d_i \le d_s \le d_{i+1}$):
+\begin{equation}
+T_s = T_i + (T_{i+1} - T_i)\,\frac{d_s - d_i}{d_{i+1} - d_i}
+\end{equation}
+Interpolações em que $T_{i+1} - T_i > 180$~s foram descartadas, por indicarem perda de sinal;
+esse limite cobre 99\% dos intervalos reais de atualização. Para a primeira parada, usou-se o
+instante em que o ônibus se afasta 30~m do terminal, isto é, a partida efetiva.
+
+A API associa \textit{trip\_ids} a muitos fragmentos curtos de trajeto (veículos que aparecem
+por poucos minutos). Por isso, mantiveram-se apenas as viagens com horário de passagem
+calculado em pelo menos 50\% das paradas. Quando dois veículos apareceram com o mesmo
+\textit{trip\_id} no mesmo dia, manteve-se o de maior cobertura. Também foram corrigidas as
+viagens rotuladas com o dia de serviço errado na virada da meia-noite. Ao final, restaram 393
+viagens e 21.871 horários de passagem, com cobertura média de 87\% das paradas.
+
+\subsection{Réplica: tempo de deslocamento entre paradas}
+
+Seguindo \cite{courb}, a variável resposta é o tempo de deslocamento
+$t_{jk}$ no trecho $j$ (da parada $j$ à parada $j+1$) na viagem $k$. Os trechos com menos de
+100 observações (a saída do terminal e a chegada final) foram excluídos, restando 60 trechos e
+21.372 observações. Foram ajustados quatro modelos:
+
+\begin{itemize}
+  \item \textbf{M1}, apenas efeito fixo: $t_{jk} = \beta_0 + \varepsilon_{jk}$;
+  \item \textbf{M2}, com intercepto aleatório por trecho:
+        $t_{jk} = \beta_0 + b_{j} + \varepsilon_{jk}$, com $b_j \sim N(0, \sigma_b^2)$ e
+        $\varepsilon_{jk} \sim N(0, \sigma^2)$;
+  \item \textbf{M3}, igual ao M2, mas com erro autorregressivo de primeira ordem dentro de cada
+        trecho: $\varepsilon_{jk} = \phi\,\varepsilon_{j,k-1} + \eta_{jk}$, em que $k-1$ é a
+        viagem anterior que passou pelo mesmo trecho;
+  \item \textbf{M3 sazonal}, em que os resíduos do M3, ordenados cronologicamente, recebem um
+        modelo AR(1) com componente sazonal AR(1) de período igual ao número de trechos por
+        viagem (60).
+\end{itemize}
+
+Os modelos M2 e M3 foram ajustados por máxima verossimilhança com o pacote \texttt{nlme} do R
+\cite{pinheiro2000}, e o componente sazonal com o pacote \texttt{forecast}
+\cite{hyndman2008}. O código partiu do repositório público de \cite{courb}, com três diferenças: o coeficiente $\phi$ é estimado a partir dos dados, e
+não fixado; o componente sazonal é estimado por soma de quadrados condicional, porque a
+máxima verossimilhança exata não convergiu em uma série com cerca de 24 mil pontos, período 60
+e lacunas; e todas as viagens da linha entram no modelo, e não apenas as de um veículo.
+
+\textbf{Avaliação.} Como no artigo original, compara-se o erro quadrático médio (EQM) no
+ajuste. Além disso, os modelos foram avaliados fora da amostra de duas formas: (a) ajuste com
+os dados de 30/03 a 12/04 e teste com os de 13 a 19/04; e (b) ajuste com a quarta-feira 08/04
+e teste com a quarta-feira 15/04, reproduzindo o desenho do artigo. Em ambas, as previsões do
+M3 e do M3 sazonal usam os resíduos já observados (previsão um passo à frente), e são
+reportados a raiz do erro quadrático médio (RMSE) e o erro absoluto médio (MAE).
+
+\subsection{Extensão: atraso em relação ao horário programado}
+
+O atraso na parada $j$ da viagem $i$ é a diferença entre o horário de passagem estimado e o
+programado no GTFS:
+\begin{equation}
+A_{ij} = T_{ij} - T^{prog}_{ij}
+\end{equation}
+Valores positivos indicam atraso. No GTFS da BHTRANS, apenas a primeira parada é ponto de
+controle; os horários das demais são estimativas da própria operadora. O atraso nas paradas
+intermediárias é, portanto, medido em relação a essa estimativa.
+
+Foram ajustados três modelos lineares mistos com o pacote \texttt{lme4} \cite{bates2015}, por
+máxima verossimilhança restrita (REML):
+
+\begin{itemize}
+  \item \textbf{E1}: $A_{ij} = \beta_0 + \beta_1\,\mathrm{pico}_i + u_i + \varepsilon_{ij}$,
+        com $u_i$ o efeito aleatório da viagem real e $\mathrm{pico}_i = 1$ para partidas
+        programadas entre 16h e 19h59 em dias úteis. É a formulação proposta na primeira etapa
+        deste trabalho.
+  \item \textbf{E1b}: igual ao E1, mas com o efeito aleatório pelo \textit{trip\_id}. Foi
+        incluído para mostrar o efeito de agrupar a mesma partida de dias diferentes, como
+        havia sido feito na primeira etapa.
+  \item \textbf{E2}: $A_{ij} = \beta_0 + \boldsymbol{\beta}_f\,\mathrm{faixa}_i +
+        \boldsymbol{\beta}_d\,\mathrm{tipo\_dia}_i + \beta_k\,\mathrm{km}_{j} + u_i + v_j +
+        \varepsilon_{ij}$, com faixa horária da partida (até 9h, 9h--16h, 16h--20h e após
+        20h), tipo de dia (útil, sábado e domingo), distância da parada ao início do percurso
+        (km), efeito aleatório da viagem $u_i$ e da parada $v_j$.
+\end{itemize}
+
+Como o número de viagens completas no pico da tarde foi pequeno, os modelos E1 e E2 foram
+reajustados com um critério de cobertura menos rígido (25\% das paradas) para verificar a
+sensibilidade do efeito do pico a esse critério.

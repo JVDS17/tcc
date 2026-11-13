@@ -1,0 +1,21 @@
+\section{Resultados Esperados}
+
+A partir da aplicação da metodologia de Modelos Lineares de Efeitos Mistos (LMM) aos dados da linha 4110 em Belo Horizonte, espera-se alcançar um conjunto de conclusões que contribuam para a compreensão da dinâmica de atrasos no sistema de transporte público. Os resultados esperados dividem-se em quatro dimensões principais:
+
+\subsection{Quantificação do Impacto do Congestionamento Urbano}
+
+Espera-se que o modelo estatístico valide a hipótese de que o horário de pico exerce um impacto sistemático e estatisticamente significante na pontualidade da linha. Especificamente, projeta-se a identificação de um coeficiente positivo para a variável de efeito fixo \textit{Horário de Pico}, permitindo quantificar, em minutos, o acréscimo médio de atraso que o passageiro enfrenta durante os períodos de maior saturação da via (16h às 19h).
+
+\subsection{Identificação da Variabilidade Intragrupo e Eficiência Operacional}
+
+Através do isolamento da variância intragrupo (efeitos aleatórios por viagem), espera-se observar uma heterogeneidade significativa entre as diferentes jornadas. Este resultado permitirá discutir o quanto do atraso é causado por fatores externos sistemáticos (como o trânsito) versus fatores aleatórios operacionais (como o comportamento do motorista, variações no tempo de embarque e desembarque ou incidentes pontuais na via).
+
+A expectativa é que o modelo revele que, mesmo controlando os fatores externos, a operação mantém uma variabilidade intrínseca que afeta a confiabilidade do sistema.
+
+\subsection{Validação da Metodologia de Interpolação e Dados Abertos}
+
+Espera-se demonstrar que a utilização de dados de GTFS Realtime, mesmo com as limitações técnicas e lacunas de transmissão identificadas, é viável para a geração de indicadores de desempenho de alta precisão. O sucesso da interpolação linear espacial deve comprovar que é possível obter estimativas de chegada em paradas com erro reduzido, fornecendo uma alternativa de baixo custo para o monitoramento da qualidade do serviço em cidades brasileiras.
+
+\subsection{Subsídios para o Planejamento de Transportes}
+
+Por fim, espera-se que os resultados forneçam evidências concretas para que gestores públicos e empresas operadoras possam reavaliar o quadro de horários planejado. A identificação de um atraso basal constante (intercepto do modelo) pode sugerir que os tempos de ciclo atuais estão subestimados frente à realidade do tráfego urbano de Belo Horizonte, indicando a necessidade de ajustes no planejamento teórico para aumentar a confiabilidade percebida pelo usuário.

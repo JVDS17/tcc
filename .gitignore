@@ -6,3 +6,8 @@ __pycache__/
 data/processed/
 credentials.json
 *.json.key
+texto/*.aux
+texto/*.bbl
+texto/*.blg
+texto/*.log
+texto/*.out

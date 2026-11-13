@@ -1,0 +1,36 @@
+\section{Introdução}
+
+O ônibus é o principal meio de transporte coletivo na maior parte das cidades brasileiras, e a
+confiabilidade do serviço pesa diretamente na decisão de usá-lo ou não. Quando o passageiro não
+consegue prever quanto tempo vai esperar ou quanto vai durar a viagem, ele passa a reservar
+mais tempo para cada deslocamento ou migra para outros modos, o que vai na contramão das
+políticas de mobilidade de baixo carbono discutidas na literatura \cite{WIMBADI2021103023}.
+A percepção de qualidade do transporte público depende, entre outros fatores, da pontualidade e
+da regularidade do serviço \cite{https://doi.org/10.1002/atr.106}.
+
+A disponibilidade de dados abertos de geolocalização dos veículos tornou possível medir essa
+previsibilidade com frequência e em larga escala. \cite{courb} usaram
+dados de GPS dos ônibus de Curitiba e Modelos Mistos para estudar o tempo de deslocamento entre
+paradas consecutivas de uma linha, mostrando que a maior parte da variabilidade está associada
+ao trecho percorrido e que há dependência temporal entre observações sucessivas. Na mesma
+direção, \cite{10.1109/TITS.2022.3145243} tratam a
+previsibilidade das operações de transporte como algo que pode ser modelado e acompanhado, e
+não apenas como pontualidade.
+
+Este trabalho replica a metodologia de \cite{courb} para Belo Horizonte,
+usando como caso de estudo a linha 4110, no sentido Belvedere $\rightarrow$ Dom Cabral. Além
+da réplica, o trabalho propõe uma extensão: comparar os horários de passagem observados com o
+quadro de horários publicado no GTFS da BHTRANS, para medir o atraso em relação ao programado e
+verificar se ele varia com a faixa horária, o tipo de dia e a posição da parada no percurso.
+
+As contribuições do trabalho são: (i) a aplicação da metodologia de Curitiba a outra capital,
+com outra fonte de dados, o que permite avaliar a transferibilidade do método; (ii) a
+validação fora da amostra dos modelos, com métricas quantitativas; (iii) a medição da
+diferença entre o tempo de viagem real e o programado na linha estudada; e (iv) a
+disponibilização do código e dos dados utilizados, permitindo a reprodução dos resultados.
+
+O restante do texto está organizado da seguinte forma. A Seção~\ref{sec:relacionados}
+apresenta os trabalhos relacionados. A Seção~\ref{sec:metodologia} descreve a coleta, o
+tratamento dos dados e os modelos. A Seção~\ref{sec:resultados} apresenta e discute os
+resultados, e a Seção~\ref{sec:conclusao} traz as conclusões, as limitações e os trabalhos
+futuros.

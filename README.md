@@ -41,6 +41,7 @@ O pipeline completo leva menos de 1 minuto e regenera tudo em `data/processed/`,
 | `src/05_modelo_atraso.R` | Extensão: modelos mistos do atraso programado |
 | `src/06_sensibilidade.py` | Sensibilidade ao critério de cobertura mínima |
 | `src/07_figuras_tabelas.py` | Figuras e tabelas descritivas |
+| `texto/` | Projeto LaTeX do artigo (template SBC), pronto para o Overleaf, e o PDF compilado |
 
 ## Decisões metodológicas importantes
 

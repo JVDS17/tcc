@@ -1,0 +1,45 @@
+\section{Conclusão}
+\label{sec:conclusao}
+
+Este trabalho replicou, para a linha 4110 de Belo Horizonte, a análise de previsibilidade de
+tempos de deslocamento com Modelos Mistos proposta por \cite{courb} para
+Curitiba. Com 393 viagens observadas em 16 dias, o intercepto aleatório por trecho explicou
+63\% da variância, e o modelo com erro AR(1) reduziu o erro de previsão fora da amostra de
+62~s para 35~s por trecho. O padrão foi estável entre as duas semanas analisadas, o que indica
+que a metodologia é transferível para outra cidade e outra fonte de dados.
+
+A extensão proposta mostrou que as viagens duraram em média 70~minutos, contra 53~minutos no
+quadro de horários, e que o atraso cresce 0,92~minuto por quilômetro percorrido. Os trechos
+mais lentos, na região da BR-356 e no centro, concentram boa parte desse acúmulo. Esses
+resultados podem subsidiar a revisão do quadro de horários da linha e a priorização de
+intervenções nos trechos críticos. Por outro lado, os dados não permitiram estimar com
+precisão o efeito do pico da tarde, e não foi observada piora entre as semanas.
+
+\subsection{Limitações}
+
+\begin{itemize}
+  \item A coleta capturou apenas o sentido Belvedere $\rightarrow$ Dom Cabral; os resultados
+        não podem ser estendidos ao sentido contrário.
+  \item Foram 16 dias de coleta, com lacunas, e poucas viagens completas no início da manhã,
+        no pico da tarde e aos domingos.
+  \item Mais da metade das viagens com registro foi descartada por cobertura insuficiente,
+        o que pode introduzir viés se as viagens descartadas tiverem comportamento diferente.
+  \item Os horários programados nas paradas intermediárias são estimativas do GTFS, e não
+        horários fiscalizados.
+  \item O atraso é medido em relação ao \textit{trip\_id} informado pela API; se um veículo
+        for rotulado com a viagem errada, o atraso dessa viagem fica distorcido. Os tempos de
+        deslocamento entre paradas, usados na réplica, não dependem desse rótulo.
+\end{itemize}
+
+\subsection{Trabalhos futuros}
+
+\begin{itemize}
+  \item Coletar os dois sentidos da linha por um período mais longo, com monitoramento da
+        coleta para reduzir as lacunas, sobretudo no pico.
+  \item Incluir variáveis explicativas nos modelos, como chuva, distância e número de
+        semáforos de cada trecho, e testar inclinações aleatórias por faixa horária.
+  \item Aplicar a metodologia a outras linhas de Belo Horizonte, incluindo linhas do MOVE, e
+        comparar a previsibilidade entre corredores.
+  \item Usar os modelos para gerar previsões de chegada em tempo real e compará-las com as
+        previsões disponibilizadas aos passageiros.
+\end{itemize}
