@@ -1,16 +1,16 @@
 "parametro","valor"
-"intercepto fixo b0 (s) - M2",72.2665084339491
-"erro padrão de b0 (s)",6.21547116088757
-"desvio padrão entre trechos sigma_u (s)",48.10414
-"desvio padrão residual sigma_e (s)",36.87219
-"ICC (fração da variância explicada pelo trecho)",0.629907794351553
-"phi AR(1) por trecho (M3)",0.392084754912807
-"AR(1) não sazonal - M3 sazonal",0.0680408415073054
-"AR sazonal - M3 sazonal",0.429029698774561
+"intercepto fixo b0 (s) - M2",72.2208330352986
+"erro padrão de b0 (s)",6.20870236870993
+"desvio padrão entre trechos sigma_u (s)",48.05171
+"desvio padrão residual sigma_e (s)",36.82674
+"ICC (fração da variância explicada pelo trecho)",0.629974407164792
+"phi AR(1) por trecho (M3)",0.39108168303242
+"AR(1) não sazonal - M3 sazonal",0.0690933586288498
+"AR sazonal - M3 sazonal",0.425809046995116
 "período sazonal (trechos por viagem)",60
-"Ljung-Box (lag 10) X2",32.4060047727983
-"Ljung-Box p-valor",0.000342578534488602
-"ADF estatística",-12.996826972053
+"Ljung-Box (lag 10) X2",32.8801766092025
+"Ljung-Box p-valor",0.000285305950259329
+"ADF estatística",-12.9709418513332
 "ADF p-valor",0.01
-"observações (trechos)",21401
-"viagens",394
+"observações (trechos)",21372
+"viagens",393

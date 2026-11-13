@@ -32,6 +32,7 @@ route_id,agency_id,route_short_name,route_long_name,route_desc,route_type,route_
 561826,37926,1509,California/Tupi,,3,,012841,FFFFFF
 561827,37926,719,Estação Pampulha / Floramar,,3,,012841,FFFFFF
 561828,37926,716,Estação São Gabriel / Novo Aarão Reis,,3,,012841,FFFFFF
+561829,37926,105,Estação Central / Lourdes,,3,,012841,FFFFFF
 561830,37926,625,Estação Venda Nova / Maria Helena B,,3,,012841,FFFFFF
 561831,37926,203,Morro Das Pedras/Ventosa,,3,,012841,FFFFFF
 561832,37926,644,Estação Pampulha / São Joao Batista,,3,,012841,FFFFFF
@@ -89,6 +90,7 @@ route_id,agency_id,route_short_name,route_long_name,route_desc,route_type,route_
 561904,37926,9503,Taquaril/Jaraguá,,3,,012841,FFFFFF
 561905,37926,3055,Estação Barreiro/Savassi Via Bhshopping,,3,,012841,FFFFFF
 561907,37926,8102,União/Carmo Sion,,3,,012841,FFFFFF
+561912,37926,631,Estação Vilarinho / Serra Verde Via Minas Caixa,,3,,012841,FFFFFF
 561914,37926,9208,Taquaril/Conjunto Santa Maria,,3,,012841,FFFFFF
 561915,37926,4110,Dom Cabral/Belvedere,,3,,012841,FFFFFF
 561916,37926,9101,Alto Vera Cruz/São Bento,,3,,012841,FFFFFF
@@ -293,12 +295,35 @@ route_id,agency_id,route_short_name,route_long_name,route_desc,route_type,route_
 701772,37926,2036,Alto Havaí/Centro/Hospitais,,3,,012841,FFFFFF
 701774,37926,209,Circular Saúde Havaí,,3,,012841,FFFFFF
 954089,37926,407,Califórnia/Glória via Centro de Saúde Califórnia,,3,,012841,FFFFFF
-958553,37926,320,Escola Estadual Amaro Neves,,3,,012841,FFFFFF
 987722,37926,343,Vila Ecológica / Independência - Via Centro de Saúde,,3,,012841,FFFFFF
 989341,37926,10,Madrugão / Circular Noturno,,3,,bed000,000000
 1004841,37926,3151,Estação Diamante/Parque das Mangabeiras via Havaí,,3,,012841,FFFFFF
 1004842,37926,6150,Estação Venda Nova/Parque Mangabeiras via Estação São Gabriel,,3,,bed000,000000
 1005031,37926,5350,Estação Diamante/Zoológico via Estação Barreiro,,3,,012841,FFFFFF
 1006539,37926,1031,Estação Central / Av. Raja Gabáglia,,3,,bed000,000000
-1012780,37926,8251,Estação São Gabriel/Gutierrez Via Barro Preto,,3,,bed000,000000
+1012780,37926,8251,Estação São Gabriel/Gutierrez Via Barro Preto,,3,,bed000,FFFFFF
 1014535,37926,109,Fazendinha/Rua do Ouro Via Vila parecida,,3,,012841,FFFFFF
+562422,39102,S20,Palmeiras / Serra,,3,,EFB12D,000000
+562423,39102,S70,Conjunto Felicidade / Shopping Del Rey,,3,,EFB12D,000000
+562424,39102,S54,Dom Bosco / Shopping Del Rey,,3,,EFB12D,000000
+562425,39102,S56,São José/Vilarinho,,3,,EFB12D,000000
+562426,39102,S64,Campo Alegre/Céu Azul Via Venda Nova,Principal,3,,EFB12D,000000
+562427,39102,S61,Mantiqueira / Estação Vilarinho,,3,,EFB12D,000000
+562429,39102,S53,Confisco / Ouro Minas,,3,,EFB12D,000000
+562433,39102,S65,São Bernardo / Minas Caixa,,3,,EFB12D,000000
+562434,39102,S92,Esplanada/Buritis,,3,,EFB12D,000000
+562435,39102,S31,Petrópolis / Barreiro,,3,,EFB12D,000000
+562436,39102,S55,Santa Monica / Minas Shopping,,3,,EFB12D,000000
+562437,39102,S10,BH Shopping / São Francisco,,3,,EFB12D,000000
+562438,39102,S41,Conjunto Califórnia / Prado,,3,,EFB12D,000000
+562439,39102,S21,Dom Cabral / BH Shopping,,3,,EFB12D,000000
+562440,39102,S66,Tupi / Europa,,3,,EFB12D,000000
+562441,39102,S32,Itaipu / Cardoso,,3,,EFB12D,000000
+562442,39102,S22,Buritis / Metrô Calafate,,3,,EFB12D,000000
+562443,39102,S19,Hospital Evangélico/Shopping Boulevard,,3,,EFB12D,000000
+562444,39102,S80,Jardim Vitória / Estação Vila Oeste,,3,,EFB12D,000000
+562445,39102,S85,Minas Shopping / Santa Ines,,3,,EFB12D,000000
+562448,39102,S33,Lindéia / Milionários,,3,,EFB12D,000000
+562451,39102,S60,Etelvina Carneiro/Jardim Leblon Via Venda Nova,,3,,EFB12D,000000
+562453,39102,S63,Campo Alegre/Céu Azul Via Rio Branco,,3,,EFB12D,000000
+637901,39102,S84,São Gabriel / Floresta - Via Hospital Belo Horizonte,,3,,efb12d,000000

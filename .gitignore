@@ -4,3 +4,5 @@ __pycache__/
 .RData
 .DS_Store
 data/processed/
+credentials.json
+*.json.key

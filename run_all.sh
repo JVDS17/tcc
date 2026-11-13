@@ -3,6 +3,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 export LANG=C.UTF-8 LC_ALL=C.UTF-8
+# (opcional) python3 src/00_recortar_gtfs.py caminho/gtfs_bh.zip  -> já executado; recorte em data/gtfs_4110
 python3 src/01_preprocessar_gps.py
 python3 src/02_passagens_paradas.py
 python3 src/03_montar_bases_modelo.py

@@ -1,19 +1,19 @@
 "modelo","termo","estimativa","erro_padrao","t","IC95_inf","IC95_sup"
-"E1: pico + (1|viagem real)","(Intercept)",13.8552848780095,0.282392858020393,49.0638643453545,13.3018050467982,14.4087647092208
-"E1: pico + (1|viagem real)","pico",3.35680796265152,2.12132556853724,1.58241055142055,-0.800913751165419,7.51452967646846
-"E1: pico + (1|viagem real)","DP aleatório: viagem",5.50510097070003,NA,NA,NA,NA
-"E1: pico + (1|viagem real)","DP aleatório: Residual",5.50718004426265,NA,NA,NA,NA
-"E1b: pico + (1|trip_id) [como no TCC 1]","(Intercept)",12.4469792871306,0.618981554585735,20.1088048503496,11.2337977330479,13.6601608412132
-"E1b: pico + (1|trip_id) [como no TCC 1]","pico",4.9254477337555,3.30209832986594,1.49161146692911,-1.54654606619162,11.3974415337026
-"E1b: pico + (1|trip_id) [como no TCC 1]","DP aleatório: trip_id",5.57144070786475,NA,NA,NA,NA
-"E1b: pico + (1|trip_id) [como no TCC 1]","DP aleatório: Residual",6.83054376514121,NA,NA,NA,NA
-"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","(Intercept)",8.22531441815323,1.28683659849065,6.3918872277963,5.70316103112352,10.7474678051829
-"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","faixa2_entrepico_9_16h",-2.76405007208107,1.27637876097516,-2.16554063463836,-5.26570647422424,-0.262393669937902
-"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","faixa3_pico_tarde_16_20h",-0.00886753944324982,1.88007044510254,-0.00471659956484565,-3.69373790024242,3.67600282135592
-"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","faixa4_noite_20h_mais",-4.79762803808497,1.57654348288244,-3.04313080493874,-7.8875964845959,-1.70765959157405
-"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","tipo_diasabado",-3.78278062192002,0.910566790397471,-4.15431428184285,-5.56745873661729,-1.99810250722274
-"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","tipo_diadomingo",-10.6179254959282,1.66604173309114,-6.3731449729221,-13.8833072895276,-7.35254370232891
-"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","dist_km",0.875837684186187,0.0262166736849525,33.4076586034974,0.824453947969242,0.927221420403133
-"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","DP aleatório: viagem",5.2485360585096,NA,NA,NA,NA
-"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","DP aleatório: parada",1.14811194641032,NA,NA,NA,NA
-"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","DP aleatório: Residual",2.71158762041149,NA,NA,NA,NA
+"E1: pico + (1|viagem real)","(Intercept)",14.1561347387019,0.287153895761262,49.2980765633466,13.5933234449895,14.7189460324144
+"E1: pico + (1|viagem real)","pico",3.05666218865539,2.1543484251742,1.41883371925237,-1.16578313483662,7.2791075121474
+"E1: pico + (1|viagem real)","DP aleatório: viagem",5.59103994567377,NA,NA,NA,NA
+"E1: pico + (1|viagem real)","DP aleatório: Residual",5.57514190805963,NA,NA,NA,NA
+"E1b: pico + (1|trip_id) [como no TCC 1]","(Intercept)",13.2832100605924,0.665031070528875,19.9738187420758,11.9797731137557,14.5866470074291
+"E1b: pico + (1|trip_id) [como no TCC 1]","pico",4.09036370530584,3.54673384344096,1.15327619321372,-2.86110689058776,11.0418343011994
+"E1b: pico + (1|trip_id) [como no TCC 1]","DP aleatório: trip_id",5.99012554105572,NA,NA,NA,NA
+"E1b: pico + (1|trip_id) [como no TCC 1]","DP aleatório: Residual",6.88386489074759,NA,NA,NA,NA
+"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","(Intercept)",7.21504084507272,1.32104018903224,5.46163614474007,4.62584965243955,9.80423203770589
+"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","faixa2_entrepico_9_16h",-2.34332966390807,1.30014214217041,-1.80236420919038,-4.89156143734483,0.204902109528701
+"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","faixa3_pico_tarde_16_20h",1.0951098967708,1.91497737900601,0.571865709107867,-2.65817679728989,4.84839659083148
+"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","faixa4_noite_20h_mais",-5.20039836653825,1.60581504904022,-3.23847903259249,-8.34773802848951,-2.05305870458699
+"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","tipo_diasabado",-0.647774380655913,0.927573781168201,-0.698353482824941,-2.46578558474922,1.1702368234374
+"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","tipo_diadomingo",-11.2649807230948,1.69708435644131,-6.63784371138559,-14.5912049404461,-7.9387565057435
+"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","dist_km",0.922487790568365,0.0298819996355699,30.8710194036107,0.86392014749661,0.981055433640121
+"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","DP aleatório: viagem",5.34778415012326,NA,NA,NA,NA
+"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","DP aleatório: parada",1.29990109464708,NA,NA,NA,NA
+"E2: faixa + tipo de dia + distância + (1|viagem) + (1|parada)","DP aleatório: Residual",2.58051769792742,NA,NA,NA,NA

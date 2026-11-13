@@ -1,9 +1,9 @@
 indicador,valor
 paradas por viagem (GTFS),64.0
 viagens reais com GPS,995.0
-viagens com cobertura >= 50% das paradas,432.0
+viagens com cobertura >= 50% das paradas,431.0
 viagens duplicadas descartadas (mesmo trip_id e dia),38.0
-viagens na análise,394.0
+viagens na análise,393.0
 viagens corrigidas na virada do dia,2.0
-passagens interpoladas,21924.0
-cobertura média de paradas nas viagens analisadas,0.869
+passagens interpoladas,21871.0
+cobertura média de paradas nas viagens analisadas,0.87

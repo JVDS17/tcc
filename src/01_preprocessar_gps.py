@@ -7,7 +7,8 @@ Saída   : data/processed/gps_4110_limpo.csv
 
 Decisões:
 - A planilha não tem cabeçalho. Colunas: timestamp da captura, linha, veículo,
-  trip_id (GTFS), horário programado de saída, latitude, longitude, flag.
+  trip_id (GTFS), horário programado de saída, latitude, longitude e velocidade
+  (km/h; a API devolve sempre 0, então a coluna não é usada).
 - O trip_id da BHTRANS identifica o HORÁRIO DE SAÍDA programado e se repete em
   todos os dias. Uma viagem real é identificada por (data, trip_id, veículo).
 - O crawler consultava a API a cada ~20 s, mas o GPS dos veículos atualiza com
@@ -22,7 +23,7 @@ ENTRADA = RAIZ / "data/raw/Monitoramento_Transporte_BH.xlsx"
 SAIDA = RAIZ / "data/processed/gps_4110_limpo.csv"
 TAB = RAIZ / "outputs/tabelas"
 
-COLUNAS = ["ts", "linha", "veiculo", "trip_id", "hora_prog", "lat", "lon", "flag"]
+COLUNAS = ["ts", "linha", "veiculo", "trip_id", "hora_prog", "lat", "lon", "velocidade_kmh"]
 
 
 def main():
@@ -46,7 +47,7 @@ def main():
     df["viagem"] = df["data"] + "|" + df["trip_id"] + "|" + df["veiculo"].astype(str)
 
     SAIDA.parent.mkdir(parents=True, exist_ok=True)
-    df.drop(columns=["flag"]).to_csv(SAIDA, index=False)
+    df.drop(columns=["velocidade_kmh"]).to_csv(SAIDA, index=False)
 
     resumo = pd.DataFrame(
         {

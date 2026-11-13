@@ -24,8 +24,8 @@ Método:
    mantêm-se só viagens com passagem calculada em pelo menos 50% das paradas.
    Quando dois veículos aparecem com o mesmo trip_id no mesmo dia, mantém-se o
    de maior cobertura.
-6. A última parada fica 22 m além do fim do traçado; a distância de cada parada
-   é limitada a (fim do traçado - 30 m).
+6. A distância de cada parada é limitada a (fim do traçado - 30 m), para que a
+   parada final, que fica no fim ou ligeiramente além do traçado, possa ser alcançada.
 """
 from pathlib import Path
 import numpy as np

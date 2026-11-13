@@ -30,9 +30,10 @@ O pipeline completo leva menos de 1 minuto e regenera tudo em `data/processed/`,
 
 | Caminho | Conteúdo |
 |---|---|
-| `crawler/crawler_gtfs_rt.py` | Coletor de posições GTFS-Realtime (**reimplementado** após a coleta; ver abaixo) |
+| `crawler/crawler_bh_original.py` | Coletor original usado na coleta (GTFS-Realtime → Google Sheets) |
 | `data/raw/` | Planilha original da coleta (aba `4110` = linha estudada) |
-| `data/gtfs_4110/` | Recorte do GTFS estático da BHTRANS com só a linha 4110 |
+| `data/gtfs_4110/` | Recorte do GTFS estático da BHTRANS (versão 202604181953, de 19/04/2026) só com a linha 4110 |
+| `src/00_recortar_gtfs.py` | Gera o recorte acima a partir do GTFS completo |
 | `src/01_preprocessar_gps.py` | Limpeza do GPS e identificação das viagens reais |
 | `src/02_passagens_paradas.py` | Projeção no traçado e interpolação do horário em cada parada |
 | `src/03_montar_bases_modelo.py` | Bases de tempos de trecho e de atrasos |
@@ -51,41 +52,46 @@ O pipeline completo leva menos de 1 minuto e regenera tudo em `data/processed/`,
   na parada é interpolado linearmente entre os dois pontos que a envolvem; intervalos acima
   de 180 s são descartados (cobrem 99% das atualizações reais).
 - **Filtro de viagens:** a API associa trip_ids a muitos fragmentos curtos de trajeto. Ficam as
-  viagens com passagem calculada em ≥ 50% das paradas (394 viagens, 21.924 passagens).
-- **Horário programado:** no GTFS só a 1ª parada é ponto de controle; os horários das demais são
-  estimativas da operadora. O atraso em parada intermediária é medido contra essa estimativa.
+  viagens com passagem calculada em ≥ 50% das paradas (393 viagens, 21.871 passagens).
+- **Horário programado:** usa-se o GTFS de 19/04/2026, em vigor durante a coleta. Versões
+  posteriores mantêm os mesmos trip_ids, mas mudam o horário programado em ~1/3 das paradas.
+  No GTFS só a 1ª parada é ponto de controle; os horários das demais são estimativas da
+  operadora, e o atraso em parada intermediária é medido contra essa estimativa.
 - **Virada do dia:** horários GTFS ≥ 24:00 e rótulos trocados na meia-noite são corrigidos.
 
 ## Principais resultados
 
-**Réplica de Pasquim et al. (tempo entre paradas consecutivas, 21.401 trechos):**
+**Réplica de Pasquim et al. (tempo entre paradas consecutivas, 21.372 trechos):**
 
 | Modelo | EQM no ajuste (s²) | RMSE validação S2 (s) | MAE validação S2 (s) |
 |---|---|---|---|
-| M1 – efeito fixo | 3.696 | 61,8 | 42,7 |
-| M2 – + intercepto aleatório por trecho | 1.356 | 38,6 | 23,0 |
-| M3 – + AR(1) por trecho | 1.151 | 34,8 | 22,1 |
-| M3 sazonal – + AR sazonal (período 60) | 1.318 | 34,9 | 21,9 |
+| M1 – efeito fixo | 3.688 | 61,8 | 42,7 |
+| M2 – + intercepto aleatório por trecho | 1.352 | 38,6 | 23,0 |
+| M3 – + AR(1) por trecho | 1.150 | 34,8 | 22,1 |
+| M3 sazonal – + AR sazonal (período 60) | 1.316 | 35,0 | 21,9 |
 
-Intercepto fixo de 72,3 s por trecho; o trecho explica 63% da variância (ICC). Os trechos mais
+Intercepto fixo de 72,2 s por trecho; o trecho explica 63% da variância (ICC). Os trechos mais
 lentos ficam entre a Av. Luiz Paulo Franco e a BR-356/Av. Raja Gabaglia (≈ 3,5 min cada).
 Validação: treino 30/03–12/04, teste 13–19/04 (e treino qua 08/04, teste qua 15/04, como no artigo).
 
 **Extensão (atraso vs. horário programado):**
 
-- Tempo de viagem observado: 69,7 min em média, contra 53,7 min programados (259 viagens completas).
-- O atraso cresce ao longo do percurso: ~3,8 min na primeira parada observada e ~20,2 min no fim.
-- Cada km percorrido acrescenta 0,88 min de atraso (IC95%: 0,82–0,93), controlando faixa horária e tipo de dia.
-- Sábados têm 3,8 min e domingos 10,6 min a menos de atraso que dias úteis.
+- Tempo de viagem observado: 69,6 min em média, contra 53,1 min programados (258 viagens completas).
+- O atraso cresce ao longo do percurso: ~3,8 min na primeira parada observada e ~20,7 min no fim.
+- Cada km percorrido acrescenta 0,92 min de atraso (IC95%: 0,86–0,98), controlando faixa horária e tipo de dia.
+- Domingos têm 11,3 min a menos de atraso que dias úteis; sábados não diferem significativamente.
 - **Pico da tarde:** só 7 viagens completas em dias úteis entre 16h e 20h. O efeito estimado
-  (+3,4 min, IC95%: −0,8 a 7,5) não é significativo e muda com o critério de cobertura;
+  (+3,1 min, IC95%: −1,2 a 7,3) não é significativo e muda com o critério de cobertura;
   ver `outputs/tabelas/atraso_sensibilidade_cobertura.csv`.
 
 ## Sobre o crawler
 
-O script original de coleta não foi preservado. `crawler/crawler_gtfs_rt.py` é uma
-reimplementação que grava no mesmo formato da planilha de coleta, para quem quiser repetir
-o estudo. Confira o endereço do feed GTFS-RT no Portal de Dados Abertos da PBH antes de usar.
+`crawler/crawler_bh_original.py` é o script usado na coleta. Ele roda em sessões de 12 h,
+consulta o feed GTFS-Realtime (VehiclePositions) a cada 20 s e grava as posições das linhas
+4033 e 4110 numa planilha do Google Sheets por meio de uma Service Account. A única alteração
+em relação ao código executado é que a chave de acesso do feed agora é lida da variável de
+ambiente `PBH_RT_ACCESSKEY`. O arquivo `credentials.json` da Service Account não faz parte do
+repositório e nunca deve ser versionado.
 
 ## Créditos e licenças
 
